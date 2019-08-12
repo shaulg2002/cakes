@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://idoP:idop123@shaulcluster-8gm0n.mongodb.net/Cakes?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecrt"
+}

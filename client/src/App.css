@@ -1,0 +1,45 @@
+body{
+  background-color: #faf0e6;
+}
+
+
+.AddToCartBtn{
+  background-color: #FFB9CD
+}
+.AddToCartBtn:hover{
+  background-color: purple;
+}
+
+.remove-btn{
+  margin-right: 0.5rem;
+}
+
+.fade-enter{
+  opacity: 0.01;
+}
+
+.fade-enter-active{
+  opacity: 1;
+  transition: ease-in 1000ms;
+}
+
+.fade-exit{
+  opacity: 1;
+}
+
+.fade-exit-active{
+  opacity: 0.01;
+  transition: ease-out 1000ms;
+}
+
+.AuthBtn{
+  color: black
+}
+
+.AuthBtn:hover {
+  color: rgb(251, 255, 240)
+}
+
+.NavbarRightContainer{
+  display: flex
+}
