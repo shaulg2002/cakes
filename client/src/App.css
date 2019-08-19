@@ -12,6 +12,7 @@ body{
 
 .remove-btn{
   margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .fade-enter{
@@ -32,8 +33,18 @@ body{
   transition: ease-out 1000ms;
 }
 
+.LogoutBtn{
+  color: black;
+  margin: 0.5rem;
+}
+
+.LogoutBtn:hover {
+  color: rgb(251, 255, 240)
+}
+
 .AuthBtn{
-  color: black
+  color: black;
+  margin: 0.5rem;
 }
 
 .AuthBtn:hover {
@@ -42,4 +53,8 @@ body{
 
 .NavbarRightContainer{
   display: flex
+}
+
+.CartBtn{
+  margin: 0.5rem
 }

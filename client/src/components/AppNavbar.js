@@ -15,7 +15,7 @@ import Logout from "../components/auth/Logout";
 import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Cart from './auth/Cart';
+import Cart from "./auth/Cart";
 
 export class AppNavbar extends Component {
   state = {
@@ -36,18 +36,22 @@ export class AppNavbar extends Component {
 
     const authLinks = (
       <Fragment>
-          <Container className="NavbarRightContainer">
-        <NavItem>
-          <span className="navbar-text mr-3" color="white">
-            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-          </span>
-        </NavItem>
-        <NavItem>
-        <Cart />
-        </NavItem>
-        <NavItem>
-          <Logout />
-        </NavItem>
+        <Container className="NavbarRightContainer">
+          
+          <NavItem>
+            <span className="navbar-text" margin="0.5rem" color="white">
+              <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+            </span>
+          </NavItem>
+
+          <NavItem>
+            <Cart />
+          </NavItem>
+
+          <NavItem>
+            <Logout />
+          </NavItem>
+
         </Container>
       </Fragment>
     );

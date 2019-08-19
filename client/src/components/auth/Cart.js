@@ -22,3 +22,4 @@ export class Cart extends Component {
 }
 
 export default connect(null)(Cart);
+  

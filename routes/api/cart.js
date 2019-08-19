@@ -4,16 +4,20 @@ const auth = require("../../middleware/auth");
 const mongoose = require("mongoose");
 mongoose.set("debug", true);
 
-//Item model
+//Item and User models
 const Item = require("../../models/Item");
 const User = require("../../models/User");
+const CartItem = require("../../models/CartItem").schema;
 
 // @route    GET api/cart
 // @desc     Get ALL cart items
 // @access   Private
 router.get("/", auth, (req, res) => {
   const userId = req.user.id;
-  User.findById(userId).then(user => res.json(user.cart));
+  console.log(userId);
+  User.findById(userId)
+    .then(user => res.json(user.cart))
+    .catch(err => res.status(400).json({ success: "false" }));
 });
 
 // @route    POST api/cart/:id
@@ -26,11 +30,14 @@ router.post("/:id", auth, (req, res) => {
   Item.findById(req.params.id)
     .then(item => {
       if (item) {
+        const cartItem = {
+          item
+        };
         User.findById(userId)
           .then(() => {
             User.findOneAndUpdate(
               { _id: userId },
-              { $push: { cart: item.id } },
+              { $push: { cart: cartItem } },
               { upsert: true },
               function(err, data) {
                 if (err) {
@@ -39,9 +46,7 @@ router.post("/:id", auth, (req, res) => {
                 if (!data) {
                   return res.status(404).end();
                 }
-                return res
-                  .status(200)
-                  .send(item);
+                return res.status(200).send(cartItem.item);
               }
             );
           })
@@ -55,28 +60,19 @@ router.post("/:id", auth, (req, res) => {
 // @desc     DELETE an item
 // @access   Private
 router.delete("/:id", auth, (req, res) => {
-  Item.findById(req.params.id)
-    .then(item => {
-      User.findById(req.user.id).then(user => {
-        User.findOneAndUpdate(
-          { _id: req.user.id },
-          { $pull: { cart: item.id } },
-          function(err, data) {
-            if (err) {
-              return res.status(500).send(err);
-            }
-            if (!data) {
-              return res.status(404).end();
-            }
-            return res
-              .status(200)
-              .send({ msg: `Success` });
-          }
-        );
-      });
-    })
-
-    .catch(err => res.status(404).json({ success: false }));
+  User.findOneAndUpdate(
+    { _id: req.user.id },
+    { $pull: { cart: { _id: req.params.id } } },
+    function(err, data) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      if (!data) {
+        return res.status(404).end();
+      }
+      return res.status(200).send(data);
+    }
+  ).catch(err => res.status(404).json({ success: false }));
 });
 
 //     Item.findById(req.params.id)

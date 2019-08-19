@@ -30,6 +30,7 @@ class CakeList extends Component {
 
   onAddToCartClick = id => {
     this.props.addItemToCart(id);
+    alert('Item was added to your cart!')
   }
 
   render() {

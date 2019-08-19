@@ -72,7 +72,6 @@ export const tokenConfig = getState => {
         if(token) {
             config.headers['x-auth-token']=token;
         }
-
         return config;
 }
 

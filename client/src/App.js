@@ -31,7 +31,7 @@ class App extends Component {
                 </React.Fragment>
               )}
             />
-           {/* <Route path="/mycart" component={MyCart} /> */}
+           <Route path="/mycart" component={MyCart} />
           </div>
         </div>
         </Router>
